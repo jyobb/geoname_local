@@ -1,0 +1,157 @@
+<?php
+
+
+
+/**
+ * Implements hook_install
+ *
+ * The install hook cannot be used to load the database because the 
+ * web server will time out.
+ */
+
+
+/**
+ * Implements hook_schema
+ */
+function geoname_local_schema() {
+
+$schema['geoname_local_admincodes'] = array(
+    'description' => t('Storage area for Geonames Admin Codes.'),
+    'fields' => array(
+      'admin_code' => array(
+        'description' => 'The admin code for a province or state',
+        'type' => 'varchar',
+	'length' => 16,
+        'not null' => TRUE,
+        'default' => '0',
+      ),
+      'name' => array(
+        'description' => t('Name of location'), 
+        'type' => 'varchar', 
+        'length' => 128, 
+        'not null' => TRUE,
+        'default' => 'unnamed', 
+      ),
+      'asciiname' => array(
+        'description' => t('Ascii name of location'), 
+        'type' => 'varchar', 
+        'length' => 128, 
+        'not null' => TRUE, 
+        'default' => 'unnamed',
+      ),
+      'integer_id' => array(
+        'description' => t('Admin code number'), 
+        'type' => 'int', 
+        'not null' => TRUE,
+        'default' => '0', 
+      ),
+    ),
+    'primary key' => array('admin_code'),
+  );
+
+
+$schema['geoname_local_geonames'] = array(
+    'description' => t('Storage area for Geonames Admin Codes.'),
+    'fields' => array(
+      'integer_id' => array(
+        'description' => 'UID for entry',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => '0',
+      ),
+      'name' => array(
+        'description' => t('name of geographical point (utf8)'), 
+        'type' => 'varchar', 
+        'length' => 200, 
+        'not null' => TRUE,
+        'default' => 'unnamed', 
+      ),
+      'asciiname' => array(
+        'description' => t('name of geographical point in plain ascii characters'), 
+        'type' => 'varchar', 
+        'length' => 200, 
+        'not null' => TRUE, 
+        'default' => 'unnamed',
+      ),
+      ///Alternate names goes here
+      'latitude' => array(
+        'description' => t('Latitude'), 
+        'type' => 'float', 
+        'not null' => TRUE,
+        'unsigned' => FALSE,
+        'scale' => 6,
+        'precision' => 10,
+        'default' => 0, 
+      ),
+      'longitude' => array(
+        'description' => t('Latitude'), 
+        'type' => 'float', 
+        'not null' => TRUE,
+        'unsigned' => FALSE,
+        'scale' => 6,
+        'precision' => 10,
+        'default' => 0, 
+      ),
+      //Feature class
+      //Feature code
+      'country_code' => array(
+        'description' => t('Country code - 2 characters'), 
+        'type' => 'varchar',
+        'length' => 2,
+        'not null' => TRUE,
+        'default' => '0', 
+      ),
+ /*
+      'cc2' => array(
+        'description' => t('alternate country codes, comma separated, ISO-3166 2-letter country code'), 
+        'type' => 'int', 
+        'not null' => TRUE,
+        'default' => 0, 
+      ),
+*/
+      'admin1_code' => array(
+        'description' => t('Country code one'), 
+        'type' => 'varchar',
+        'length' => 20, 
+        'not null' => TRUE,
+        'default' => '0', 
+      ),
+      'admin2_code' => array(
+        'description' => t('Country code two'), 
+        'type' => 'varchar',
+        'length' => 80, 
+        'not null' => TRUE,
+        'default' => '0', 
+      ),
+      'admin_code' => array(
+        'description' => 'The admin code for a province or state',
+        'type' => 'varchar',
+	'length' => 16,
+        'not null' => TRUE,
+        'default' => '0',
+      ),
+      //Admin3 code
+      //Admin4 code
+      //Population
+      //Elevation
+      //Dem
+      //Timezone
+      //Modification date
+    ),
+    'primary key' => array('integer_id'),
+  );
+
+
+
+
+return $schema;
+}
+
+
+
+
+
+
+
+
+?>

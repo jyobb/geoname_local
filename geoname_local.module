@@ -1,0 +1,9 @@
+<?php
+
+function geoname_local_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#geoname_local":
+      return '' . t("Load basic Geonames database into drupal") . '';
+      break;
+  }
+} 

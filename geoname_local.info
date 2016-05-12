@@ -1,0 +1,5 @@
+name = Geonames Database Install
+description = Importer plugin for performing geolocation lookups on Zip uploads.
+package = USask
+version = 7.x-dev
+core = 7.x
